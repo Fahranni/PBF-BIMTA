@@ -8,8 +8,8 @@
   </head>
   @include('header')
   <?php
-    $data = file_get_contents("http://localhost/PBF/frontend/public/API/get_data.php?type=mahasiswa");
-    $mahasiswa = json_decode($data, true);
+   $data = file_get_contents("http://localhost/PBF/PBF-frontend-main/public/API/get_data.php?type=mahasiswa");
+   $mahasiswa = json_decode($data, true);
     ?>
     
   <body class="bg-light vh-100">

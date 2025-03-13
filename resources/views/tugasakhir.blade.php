@@ -17,46 +17,41 @@
        <form action='' method='post' style="margin-top:100px;">
         <div class="my-3 p-3 bg-body rounded shadow-sm">
             <div class="mb-3 row">
-                <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name='nama' id="nama">
-                </div>
-            </div>
-            <div class="mb-3 row">
                 <label for="npm" class="col-sm-2 col-form-label">NPM</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name='npm' id="npm">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="angkatan" class="col-sm-2 col-form-label">Angkatan</label>
+                <label for="nama_mahasiswa" class="col-sm-2 col-form-label">Nama Mahasiswa</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='angkatan' id="angkatan">
+                    <input type="text" class="form-control" name='nama_mahasiswa' id="nama_mahasiswa">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <label for="nama_dosen" class="col-sm-2 col-form-label">Nama Dosen</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='email' id="email">
-                </div>
-            </div>
-             <div class="mb-3 row">
-                <label for="no_telp" class="col-sm-2 col-form-label">No.Telepon</label>
-                <div class="col-sm-10">
-                    <input type="number" class="form-control" name='no_telp' id="no_telp">
+                    <input type="text" class="form-control" name='nama_dosen' id="nama_dosen">
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="ta" class="col-sm-2 col-form-label">Judul TA</label>
+                <label for="judul" class="col-sm-2 col-form-label">Judul TA</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name='ta' id="ta">
+                    <input type="judul" class="form-control" name='judul' id="judul">
                 </div>
             </div>
             <div class="mb-3 row">
-        <label for="file" class="col-sm-2 col-form-label">Upload TA</label>
-        <div class="col-sm-10">
-            <input type="file" class="form-control" name='file' id="file">
-        </div>
+                <label for="tgl_bimbingan" class="col-sm-2 col-form-label">Tanggal Bimbingan</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control" name='tgl_bimbingan' id="tgl_bimbingan">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="catatan" class="col-sm-2 col-form-label">Catatan Bimbingan</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name='catatan' id="catatan">
+                </div>
+            </div>
     </div>
                 <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
           </form>
@@ -75,12 +70,12 @@
                     <thead>
                         <tr>
                         <th class="col-md-1">No</th>
-                            <th class="col-md-1">Nama</th>
                             <th class="col-md-3">NPM</th>
-                            <th class="col-md-4">Angkatan</th>
-                            <th class="col-md-2">Email</th>
-                            <th class="col-md-2">No.Telepon</th>
-                            <th class="col-md-2">Judul TA</th>
+                            <th class="col-md-1">Nama Mahasiswa</th>
+                            <th class="col-md-4">Nama Dosen</th>
+                            <th class="col-md-2">Judul</th>
+                            <th class="col-md-2">Tanggal Bimbingan</th>
+                            <th class="col-md-2">Catatan Bimbingan</th>
                             <th class="col-md-2">Aksi</th>
                         </tr>
                     </thead>

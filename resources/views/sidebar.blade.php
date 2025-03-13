@@ -31,7 +31,7 @@
     </a>
   </li>
   <li>
-    <a href="/dosen" class="nav-link link-body-emphasis">
+    <a href="{{ route('dosen') }}" class="nav-link link-body-emphasis">
     <img src="image/dosen.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Dosen Pembimbing
     </a>

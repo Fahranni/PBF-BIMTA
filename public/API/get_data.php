@@ -19,9 +19,9 @@ if ($conn->connect_error) {
 $type = isset($_GET['type'] ) ? $_GET['type'] : '';
 
 if ($type === 'dosen'){
-    $sql = "SELECT nidn, nama, email, no_telp FROM dosen_pembimbing";
+    $sql = "SELECT * FROM dosen_pembimbing";
 }elseif($type === 'mahasiswa'){
-    $sql = "SELECT npm, nama, angkatan, email, no_telp FROM mahasiswa";
+    $sql = "SELECT * FROM mahasiswa";
 }else{
     echo json_encode(["error" => "Query gagal: " . $conn->error]);
     exit;
@@ -35,7 +35,7 @@ if (!$result) {
     exit;
 }
 
-$dosen = [];
+$data = [];
 while ($row = $result->fetch_assoc()) {
     $data[] = $row;
 }

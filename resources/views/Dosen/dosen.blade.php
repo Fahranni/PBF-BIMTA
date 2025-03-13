@@ -9,57 +9,26 @@
   @include('header')
   <?php
    
-    $data = file_get_contents("http://localhost/PBF/frontend/public/API/get_data.php?type=dosen");
+   $data = file_get_contents("http://localhost/PBF/PBF-frontend-main/public/API/get_data.php?type=dosen");
     $dosen = json_decode($data, true);
     ?>
     
   <body class="bg-light vh-100">
    
     <main class="container py-4"  pt-2 pb-5 position-relative>
-    <div class="row justify-content-center mt-0">
+    <div class="row justify-content-center mt-5">
     <div class="col-md-10 col-lg-10 mt-50">
-       <!-- START FORM -->
-       <form action='' method='post' style="margin-top:100px;">
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <div class="mb-3 row">
-                <label for="nidn" class="col-sm-2 col-form-label">NIDN</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name='nidn' id="nidn">
-                </div>
-        </div>
-            <div class="mb-3 row">
-                <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name='nama' id="nama">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name='email' id="email">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="no_telp" class="col-sm-2 col-form-label">No.Telepon</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name='no_telp' id="no_telp">
-                </div>
-            </div>
-             </div>
-                <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
-          </form>
-        </div>
-        <!-- AKHIR FORM -->
-        
+
         <!-- START DATA -->
         <div class="my-3 p-3 bg-body rounded shadow-sm">
                 
                 <!-- TOMBOL TAMBAH DATA -->
                 <div class="pb-3">
-                  <a href='' class="btn btn-primary">+ Tambah Data</a>
+                    <a href="{{ route('dosen.create') }}" class="btn btn-primary">+ Tambah Data</a>
+
                 </div>
           
-                <table class="table table-striped">
+                <table class="table table-striped ">
                     <thead>
                         <tr>
                         <th class="col-md-1">No</th>

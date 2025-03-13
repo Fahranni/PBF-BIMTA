@@ -14,7 +14,7 @@
 <span class="fs-4 ms-2 fw-bold fst-italic">Bimbingan TA</span>
   </a>
   <ul class="nav nav-pills">
-    <li class="nav-item"><a href="home.blade.php" class="nav-link active" aria-current="page">Home</a></li>
+    <li class="nav-item"><a href="/home" class="nav-link active" aria-current="page">Home</a></li>
     <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
   </ul>
 </div>
