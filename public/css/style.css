@@ -1,0 +1,72 @@
+
+html, body{
+    height: 100%;
+    background-color: rgb(245, 249, 251);
+}
+.global-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: blue;
+}
+
+.login-form{
+    width: 380px;
+    height: 500px;
+    padding: 20px;
+    background-color: rgba(53, 119, 166, 0.306);
+    border-radius: 9px;
+}
+
+input[type="email"],
+input[type="password"]{
+    border: 2px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.card-title{
+    font-weight: 800;
+    padding-top: 2px;
+}
+
+.btn{
+    background-color: blue;
+    color: aliceblue;
+    transform: translateY(10px);
+    font-size: 14px;
+    border-radius: 10px !important;
+}
+.custom-font {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+  }
+  body {
+    height: 100vh;
+    overflow: hidden;
+}
+.sidebar {
+    height: 100vh;
+    overflow-y: auto;
+    position: fixed;
+    width: 280px;
+    border-right: 1px solid #dee2e6;
+}
+.sidebar .nav-link {
+    color: #ffffff;
+}
+
+.content {
+    margin-left: 280px;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+}
+.nav-link {
+    display: flex;
+    align-items: center;
+}
+.nav-link img {
+    margin-right: 10px;
+}
