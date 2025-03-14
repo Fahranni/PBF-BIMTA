@@ -31,13 +31,13 @@
     </a>
   </li>
   <li>
-    <a href="{{ route('dosen') }}" class="nav-link link-body-emphasis">
+    <a href="{{ route('dosen.dosen') }}" class="nav-link link-body-emphasis">
     <img src="image/dosen.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Dosen Pembimbing
     </a>
   </li>
   <li>
-    <a href="/mahasiswa" class="nav-link link-body-emphasis">
+    <a href="{{route('mahasiswa.mahasiswa')}}" class="nav-link link-body-emphasis">
     <img src="image/student.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Mahasiswa
     </a>
