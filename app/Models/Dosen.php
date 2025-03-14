@@ -9,6 +9,7 @@ class Dosen extends Model
 {
    use HasFactory;
    protected $table = 'dosen_pembimbing';
+   protected $primaryKey = 'nidn';
    protected $fillable = [
     'nidn',
     'nama',

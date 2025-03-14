@@ -47,9 +47,12 @@
                 <td>{{$dosens['email']}}</td>
                 <td>{{$dosens['no_telp']}}</td>
                 <td>
-                  
+                  <form action="{{route('dosen.destroy', $dosens['nidn'])}}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
                     <a href='edit.php?id={{$dosens['nidn']}}' class='btn btn-warning btn-sm'>Edit</a>
-                    <a href='delete.php?id{{$dosens['nidn']}}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                  </form>
                 </td>
               </tr>
               @endforeach
