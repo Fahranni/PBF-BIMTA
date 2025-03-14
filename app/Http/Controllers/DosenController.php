@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 
 class DosenController extends Controller
 {
     public function dosen(){
-        $dosen = Dosen::all();
+        
+        $response = Http::get('http://localhost:8080/Dosen');
+        $dosen = $response->json();
         return view('Dosen.dosen', compact('dosen'));
     }
     public function create(){
@@ -21,8 +23,7 @@ class DosenController extends Controller
         'email'=> $request->email,
         'no_telp'=> $request->no_telp,
     ]);
-    function destroy($nidn){
-
+    function destroy($id){
     }
     return redirect()->route('dosen.dosen')->with('Berhasil');
 }

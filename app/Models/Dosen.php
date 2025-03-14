@@ -15,4 +15,5 @@ class Dosen extends Model
     'email',
     'no_telp',
 ];
+public $timestamps = false; 
 }

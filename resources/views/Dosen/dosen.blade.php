@@ -42,13 +42,14 @@
                       @foreach ($dosen as $dosens) 
                 <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$dosens->nidn}}</td>
-                <td>{{$dosens->nama}}</td>
-                <td>{{$dosens->email}}</td>
-                <td>{{$dosens->no_telp}}</td>
+                <td>{{$dosens['nidn']}}</td>
+                <td>{{$dosens['nama']}}</td>
+                <td>{{$dosens['email']}}</td>
+                <td>{{$dosens['no_telp']}}</td>
                 <td>
-                    <a href='edit.php?id={{$dosens->nidn}}' class='btn btn-warning btn-sm'>Edit</a>
-                    <a href='delete.php?id={{$dosens->nidn}}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
+                  
+                    <a href='edit.php?id={{$dosens['nidn']}}' class='btn btn-warning btn-sm'>Edit</a>
+                    <a href='delete.php?id{{$dosens['nidn']}}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
                 </td>
               </tr>
               @endforeach

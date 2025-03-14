@@ -9,6 +9,7 @@ Route::view('/home', 'home')->name('home'); // Route untuk home
 Route::get('/dosen', [DosenController::class, 'dosen'])->name('dosen.dosen');
 Route::get('/dosen/create', [DosenController::class, 'create'])->name('dosen.create');
 Route::post('/dosen', [DosenController::class, 'store'])->name('dosen.store');
+Route::delete('/dosen/{$nidn}', [DosenController::class, 'destroy'])->name('dosen.destroy');
 Route::get('/mahasiswa', [MahasiswaController::class,'mahasiswa'])->name('mahasiswa.mahasiswa'); // Route untuk mahasiswa
 Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
 
