@@ -39,24 +39,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                      @foreach ($dosen as $dosens) 
-                <tr>
-                <td>{{$loop->iteration}}</td>
-                <td>{{$dosens['nidn']}}</td>
-                <td>{{$dosens['nama']}}</td>
-                <td>{{$dosens['email']}}</td>
-                <td>{{$dosens['no_telp']}}</td>
-                <td>
-                  <form action="{{route('dosen.destroy', $dosens['nidn'])}}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <a href='edit.php?id={{$dosens['nidn']}}' class='btn btn-warning btn-sm'>Edit</a>
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                  </form>
-                </td>
-              </tr>
-              @endforeach
+                      @if (!empty($dosen) && is_array($dosen))
+                        @foreach ($dosen as $dosens)
+                          <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $dosens['nidn'] }}</td>
+                            <td>{{ $dosens['nama'] }}</td>
+                            <td>{{ $dosens['email'] }}</td>
+                            <td>{{ $dosens['no_telp'] }}</td>
+                            <td>
+                              <form action="{{ route('dosen.destroy', $dosens['nidn']) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ route('dosen.edit', $dosens['nidn']) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                              </form>
+                            </td>
+                          </tr>
+                        @endforeach
+                      @else
+                        <tr>
+                          <td colspan="6" class="text-center">Data dosen tidak tersedia.</td>
+                        </tr>
+                      @endif
                     </tbody>
+                    
                 </table>       
           </div>
           <!-- AKHIR DATA -->

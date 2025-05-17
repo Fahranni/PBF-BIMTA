@@ -12,5 +12,8 @@ Route::post('/dosen', [DosenController::class, 'store'])->name('dosen.store');
 Route::delete('/dosen/{nidn}', [DosenController::class, 'destroy'])->name('dosen.destroy');
 Route::get('/mahasiswa', [MahasiswaController::class,'mahasiswa'])->name('mahasiswa.mahasiswa'); // Route untuk mahasiswa
 Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
+Route::get('/dosen/{nidn}/edit', [DosenController::class, 'edit'])->name('dosen.edit');
+Route::put('/dosen/{nidn}', [DosenController::class, 'update'])->name('dosen.update'); 
+
 
 ?>
