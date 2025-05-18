@@ -36,14 +36,18 @@
                       @foreach ($mahasiswa as $mahasiswas) 
                       <tr>
                       <td>{{$loop->iteration}}</td>
-                      <td>{{$mahasiswas->npm}}</td>
-                      <td>{{$mahasiswas->nama}}</td>
-                      <td>{{$mahasiswas->angkatan}}</td>
-                      <td>{{$mahasiswas->email}}</td>
-                      <td>{{$mahasiswas->no_telp}}</td>
+                      <td>{{$mahasiswas['npm']}}</td>
+                      <td>{{$mahasiswas['nama']}}</td>
+                      <td>{{$mahasiswas['angkatan']}}</td>
+                      <td>{{$mahasiswas['email']}}</td>
+                      <td>{{$mahasiswas['no_telp']}}</td>
                       <td>
-                          <a href='edit.php?id={{$mahasiswas->npm}}' class='btn btn-warning btn-sm'>Edit</a>
-                          <a href='delete.php?id={{$mahasiswas->npm}}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'> Hapus</a>
+                        <form action="{{ route('mahasiswa.destroy', $mahasiswas['npm']) }}" method="POST" style="display:inline;">
+                          @csrf
+                          @method('DELETE')
+                          <a href="{{ route('mahasiswa.edit', $mahasiswas['npm']) }}" class="btn btn-warning btn-sm">Edit</a>
+                          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
+                        </form>
                       </td>
                     </tr>
                     @endforeach
