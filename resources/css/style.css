@@ -19,11 +19,11 @@ html, body{
     border-radius: 9px;
 }
 
-input[type="email"],
+input[type="text"],
 input[type="password"]{
     border: 2px;
     border-radius: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .card-title{
@@ -69,4 +69,7 @@ input[type="password"]{
 }
 .nav-link img {
     margin-right: 10px;
+}
+label[for="role"] {
+  margin-bottom: 5px;
 }

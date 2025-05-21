@@ -43,7 +43,7 @@
     </a>
   </li>
   <li>
-    <a href="tugasakhir.blade.php" class="nav-link link-body-emphasis">
+    <a href="{{route('tugas_akhir.tugas_akhir')}}" class="nav-link link-body-emphasis">
     <img src="image/book.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Tugas Akhir
     </a>

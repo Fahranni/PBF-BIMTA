@@ -14,6 +14,7 @@ class DosenController extends Controller
         //dd($dosen);
         return view('Dosen.dosen', compact('dosen'));
     }
+
     public function create(){//Menambah Data Dosen
         $dosen = Dosen::all();
         return view('Dosen.create', ['dosen' => $dosen]);
@@ -67,8 +68,6 @@ public function update(Request $request, $nidn) {
     } else {
         return redirect()->route('dosen.dosen')->with('error', 'Gagal mengupdate data');
     }
-   
-
 }
 
 

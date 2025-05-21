@@ -17,4 +17,9 @@ class Mahasiswa extends Model
     'email',
     'no_telp',
 ];
+public function tugasAkhir()
+{
+    return $this->hasMany(TugasAkhir::class, 'npm', 'npm');
+}
+
 }
