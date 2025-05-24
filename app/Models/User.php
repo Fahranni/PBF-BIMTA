@@ -8,7 +8,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'user'; // atau 'user' jika nama tabel kamu memang itu
+    protected $table = 'user'; 
 
     protected $primaryKey = 'id_user'; // karena kamu pakai id_user, bukan id
 

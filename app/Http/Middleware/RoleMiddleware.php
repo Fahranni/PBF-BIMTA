@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 use Closure;
 use Illuminate\Http\Request;
@@ -14,18 +16,17 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle($request, Closure $next, $role)
     {
-        if (!Auth::check()) {
-            return redirect('/login');
-        }
-
-        $user = Auth::user();
-        if (in_array($user->role, $roles)) {
+    Log::info('RoleMiddleware - session role: ' . session('role'));
+    Log::info('RoleMiddleware - required role: ' . $role);
+        if (session('role') == 'admin'){
             return $next($request);
         }
-
-        abort(403, 'Akses ditolak');
-    }
-    }
-
+        
+        if (session('role') !== $role){
+            return redirect()->route('login')->withErrors(['akses'=>'Tidak memiliki akses']);
+        }
+    return $next($request);
+}
+}

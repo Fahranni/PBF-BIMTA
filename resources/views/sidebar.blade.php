@@ -17,12 +17,15 @@
 </a>
 
 
-<div class="dropdown">
-  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></a>
-</div>
-</div>
-
 <div class="d-flex flex-column flex-shrink-0 p-3 vh-100 bg-body-tertiary" style="width: 280px;">
+
+{{-- Tampilkan role user --}}
+    @if(session()->has('role'))
+        <div class="mb-3 text-muted small">
+            Role: <strong>{{ session('role') }}</strong>
+        </div>
+    @endif
+
 <ul class="nav nav-pills flex-column mb-auto h-full">
   <li class="nav-item">
     <a href="#" class="nav-link link-body-emphasis">
@@ -31,11 +34,14 @@
     </a>
   </li>
   <li>
+   
     <a href="{{ route('dosen.dosen') }}" class="nav-link link-body-emphasis">
     <img src="image/dosen.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Dosen Pembimbing
     </a>
   </li>
+ 
+
   <li>
     <a href="{{route('mahasiswa.mahasiswa')}}" class="nav-link link-body-emphasis">
     <img src="image/student.png" alt="Icon" width="19" height="19" class="pe-none me-2">

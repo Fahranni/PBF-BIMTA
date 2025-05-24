@@ -15,12 +15,21 @@ class DosenController extends Controller
         return view('Dosen.dosen', compact('dosen'));
     }
 
+    private function checkRole(){
+        $role = session('role');
+        if($role !== 'admin' && $role !=='dosen'){
+            abort(403, 'Unauthorized action');
+        }
+    }
+
     public function create(){//Menambah Data Dosen
+        $this->checkRole();
         $dosen = Dosen::all();
         return view('Dosen.create', ['dosen' => $dosen]);
     }
     
     public function store(Request $request){
+        $this->checkRole();
     $response = Http::post('http://localhost:8080/Dosen',[
         'nidn' => $request->nidn,
         'nama' => $request->nama,
@@ -38,7 +47,7 @@ class DosenController extends Controller
 
     public function destroy($nidn)
 {
-
+$this->checkRole();
     $dosen = Dosen::where('nidn', $nidn)->first();
     if ($dosen) {
         $dosen->delete();
@@ -49,6 +58,7 @@ class DosenController extends Controller
 
 public function edit($nidn)
     {
+        $this->checkRole();
         $response = Http::get("http://localhost:8080/Dosen/{$nidn}");
         $dosen = $response->json();
         $dosen = is_array($dosen) && isset($dosen[0]) ? $dosen[0] : $dosen;
@@ -56,6 +66,7 @@ public function edit($nidn)
     }
 
 public function update(Request $request, $nidn) {
+    $this->checkRole();
     $response = Http::put("http://localhost:8080/Dosen/{$nidn}", [
         'nidn' => $request->nidn,
         'nama' => $request->nama,

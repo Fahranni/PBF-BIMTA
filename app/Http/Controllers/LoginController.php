@@ -55,8 +55,18 @@ class LoginController extends Controller
                     'user' => (object) $data['user']
                 ]);
 
-                return redirect()->route('home')->with('success', 'Login berhasil!');
-            }
+    switch (session('role')) {
+    case 'admin':
+        return redirect()->route('admin.admin')->with('success', 'Login sebagai admin');
+    case 'dosen':
+        return redirect()->route('dosen.dosen')->with('success', 'Login sebagai dosen');
+    case 'mahasiswa':
+        return redirect()->route('mahasiswa.mahasiswa')->with('success', 'Login sebagai mahasiswa');
+    default:
+        return redirect()->route('login')->withErrors(['login_error' => 'Role tidak dikenali.']);
+    }
+
+    }
 
             return back()->withErrors([
                 'login_error' => $response->json()['message'] ?? 'Login gagal'

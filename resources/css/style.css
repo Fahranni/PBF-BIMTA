@@ -73,3 +73,9 @@ input[type="password"]{
 label[for="role"] {
   margin-bottom: 5px;
 }
+.nav-link.active {
+    background-color: #0d6efd; /* Warna biru Bootstrap */
+    color: white !important;
+    font-weight: bold;
+    border-radius: 5px;
+}

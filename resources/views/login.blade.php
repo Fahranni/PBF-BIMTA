@@ -23,13 +23,14 @@
               @csrf
                 <div class="mb-0">
                   <label for="username"  class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp">
+                    <input type="text" name="username" class="form-control" id="username" aria-describedby="emailHelp" value="{{old('username')}}">
                 </div>
 
                 <div class="mb-0">
                  <label for="password"  class="form-label">Password</label>
                  <input type="password" name="password" class="form-control" id="password">
                 </div>
+
                 <div class="d-grid gap-2">
                 <button class="btn btn-primary">Login</button>
                 </div>
@@ -39,7 +40,13 @@
                         {{session('gagal')}}
                     </div>
                 @endif
-
+                @if ($errors->any())
+               <div class="alert alert-danger mt-3 text-center">
+               @foreach ($errors->all() as $error)
+               <div>{{ $error }}</div>
+              @endforeach
+              </div>
+              @endif
         </div>
     </div>
     </div>
