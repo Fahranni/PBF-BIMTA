@@ -36,10 +36,12 @@
                         <tr>
                         <th>No</th>
                         <th>NIDN</th>
-                            <th class>Nama</th>
-                            <th class>Email</th>
-                            <th class>No.Telepon</th>
-                            <th class>Aksi</th>
+                        <th class>Nama</th>
+                        <th class>Email</th>
+                        <th class>No.Telepon</th>
+                        @if(session('role') === 'admin' || session('role') === 'dosen')
+                        <th class>Aksi</th>
+                        @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +73,9 @@
                         </tr>
                       @endif
                     </tbody>
-                </table>       
+                </table>    
+                
+                
           </div>
           <!-- AKHIR DATA -->
     </div>

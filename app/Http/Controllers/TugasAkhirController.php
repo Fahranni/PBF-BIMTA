@@ -29,6 +29,7 @@ class TugasAkhirController extends Controller
         return view('tugas_akhir.tugas_akhir', compact('tugas_akhir'));
     }
 
+    
     /**
      * Show the form for creating a new resource.
      */

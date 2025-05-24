@@ -17,4 +17,14 @@ class Dosen extends Model
     'no_telp',
 ];
 public $timestamps = false; 
+
+public function dosen()
+{
+    return $this->belongsTo(Dosen::class, 'nidn', 'nidn');
+}
+
+ public function tugasAkhir()
+    {
+        return $this->belongsTo(TugasAkhir::class, 'id_ta', 'id_ta');
+    }
 }

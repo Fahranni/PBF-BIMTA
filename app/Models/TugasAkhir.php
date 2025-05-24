@@ -24,4 +24,5 @@ class TugasAkhir extends Model
     {
         return $this->belongsTo(Mahasiswa::class, 'npm', 'npm');
     }
+    
 }

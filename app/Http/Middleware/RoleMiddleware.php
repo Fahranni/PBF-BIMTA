@@ -20,9 +20,6 @@ class RoleMiddleware
     {
     Log::info('RoleMiddleware - session role: ' . session('role'));
     Log::info('RoleMiddleware - required role: ' . $role);
-        if (session('role') == 'admin'){
-            return $next($request);
-        }
         
         if (session('role') !== $role){
             return redirect()->route('login')->withErrors(['akses'=>'Tidak memiliki akses']);

@@ -19,35 +19,32 @@
 
 <div class="d-flex flex-column flex-shrink-0 p-3 vh-100 bg-body-tertiary" style="width: 280px;">
 
-{{-- Tampilkan role user --}}
-    @if(session()->has('role'))
-        <div class="mb-3 text-muted small">
-            Role: <strong>{{ session('role') }}</strong>
-        </div>
-    @endif
 
 <ul class="nav nav-pills flex-column mb-auto h-full">
   <li class="nav-item">
-    <a href="#" class="nav-link link-body-emphasis">
+    <a href="{{ route('home') }}" class="nav-link link-body-emphasis">
     <img src="image/homee.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Home
     </a>
   </li>
   <li>
-   
+
+   @if(session('role') !== 'mahasiswa')
     <a href="{{ route('dosen.dosen') }}" class="nav-link link-body-emphasis">
     <img src="image/dosen.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Dosen Pembimbing
     </a>
   </li>
+  @endif
  
-
   <li>
     <a href="{{route('mahasiswa.mahasiswa')}}" class="nav-link link-body-emphasis">
     <img src="image/student.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Mahasiswa
     </a>
   </li>
+ 
+
   <li>
     <a href="{{route('tugas_akhir.tugas_akhir')}}" class="nav-link link-body-emphasis">
     <img src="image/book.png" alt="Icon" width="19" height="19" class="pe-none me-2">
@@ -55,11 +52,22 @@
     </a>
   </li>
   <li>
-    <a href="/bimbingan" class="nav-link link-body-emphasis">
+    <a href="{{route('bimbingan.bimbingan')}}" class="nav-link link-body-emphasis">
     <img src="image/kalender.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Jadwal Bimbingan
     </a>
   </li>
+
+  <li>
+  <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn nav-link link-body-emphasis w-100 text-start">
+      <img src="image/logout.png" alt="Logout" width="19" height="19" class="pe-none me-2">
+      Logout
+    </button>
+  </form>
+</li>
+
 </ul>
 </nav>
 </div>

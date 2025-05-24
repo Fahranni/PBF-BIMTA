@@ -57,11 +57,11 @@ class LoginController extends Controller
 
     switch (session('role')) {
     case 'admin':
-        return redirect()->route('admin.admin')->with('success', 'Login sebagai admin');
+        return redirect()->route('home')->with('success', 'Login sebagai admin');
     case 'dosen':
-        return redirect()->route('dosen.dosen')->with('success', 'Login sebagai dosen');
+        return redirect()->route('home')->with('success', 'Login sebagai dosen');
     case 'mahasiswa':
-        return redirect()->route('mahasiswa.mahasiswa')->with('success', 'Login sebagai mahasiswa');
+        return redirect()->route('home')->with('success', 'Login sebagai mahasiswa');
     default:
         return redirect()->route('login')->withErrors(['login_error' => 'Role tidak dikenali.']);
     }

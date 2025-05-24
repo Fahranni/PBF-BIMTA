@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BimbinganController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\TugasAkhirController;
@@ -55,4 +56,7 @@ Route::post('/tugas_akhir', [TugasAkhirController::class, 'store'])->name('tugas
 Route::delete('/tugas_akhir/{id_ta}', [TugasAkhirController::class, 'destroy'])->name('tugas_akhir.destroy');
 Route::get('/tugas_akhir/{id_ta}/edit', [TugasAkhirController::class, 'edit'])->name('tugas_akhir.edit');
 Route::put('/tugas_akhir/{id_ta}', [TugasAkhirController::class, 'update'])->name('tugas_akhir.update'); 
+
+Route::get('/bimbingan', [BimbinganController::class, 'bimbingan'])->name('bimbingan.bimbingan');//Route Bimbingan
+
 ?>
