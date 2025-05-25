@@ -12,7 +12,7 @@
     <main class="container py-4"  pt-2 pb-5 position-relative>
         <div class="row justify-content-center mt-0">
         <div class="col-md-10 col-lg-10 mt-50">
-           <form action="{{route('mahasiswa.store')}}" method='POST' style="margin-top:100px;">
+           <form action="{{route('dosen.store')}}" method='POST' style="margin-top:100px;">
             @csrf
             <div class="my-3 p-3 bg-body rounded shadow-sm">
             <div class="mb-3 row">

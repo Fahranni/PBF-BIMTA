@@ -27,16 +27,14 @@
       Home
     </a>
   </li>
-  <li>
 
-   @if(session('role') !== 'mahasiswa')
+  <li>
     <a href="{{ route('dosen.dosen') }}" class="nav-link link-body-emphasis">
     <img src="image/dosen.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Dosen Pembimbing
     </a>
   </li>
-  @endif
- 
+
   <li>
     <a href="{{route('mahasiswa.mahasiswa')}}" class="nav-link link-body-emphasis">
     <img src="image/student.png" alt="Icon" width="19" height="19" class="pe-none me-2">

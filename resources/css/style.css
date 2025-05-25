@@ -1,9 +1,10 @@
-
-html, body{
+html, body {
     height: 100%;
     background-color: rgb(245, 249, 251);
+    overflow-y: auto;
 }
-.global-container{
+
+.global-container {
     height: 100%;
     display: flex;
     align-items: center;
@@ -11,41 +12,55 @@ html, body{
     color: blue;
 }
 
-.login-form{
-    width: 380px;
-    height: 500px;
+.login-form {
+    width: 500px;
     padding: 20px;
+    overflow-y: auto;
     background-color: rgba(53, 119, 166, 0.306);
     border-radius: 9px;
 }
 
+/* Border dan radius input */
 input[type="text"],
-input[type="password"]{
-    border: 2px;
+input[type="password"],
+select.form-select {
+    border: 2px solid #ccc;
     border-radius: 10px;
-    margin-bottom: 10px;
 }
 
-.card-title{
+/* Atur jarak antar form group */
+.login-form form > div {
+    margin-bottom: 8px; 
+}
+
+/* Jarak antara label dan input/select */
+.login-form label {
+    margin-bottom: 4px;
+}
+
+.card-title {
     font-weight: 800;
     padding-top: 2px;
 }
 
-.btn{
+.login-form .btn {
     background-color: blue;
     color: aliceblue;
     transform: translateY(10px);
     font-size: 14px;
     border-radius: 10px !important;
 }
+
 .custom-font {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-  }
-  body {
-    height: 100vh;
-    overflow: hidden;
 }
+
+body {
+    height: 100vh;
+    overflow: auto;
+}
+
 .sidebar {
     height: 100vh;
     overflow-y: auto;
@@ -53,6 +68,7 @@ input[type="password"]{
     width: 280px;
     border-right: 1px solid #dee2e6;
 }
+
 .sidebar .nav-link {
     color: #ffffff;
 }
@@ -63,19 +79,30 @@ input[type="password"]{
     height: 100vh;
     overflow-y: auto;
 }
+
 .nav-link {
     display: flex;
     align-items: center;
 }
+
 .nav-link img {
     margin-right: 10px;
 }
+
 label[for="role"] {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
+
 .nav-link.active {
     background-color: #0d6efd; /* Warna biru Bootstrap */
     color: white !important;
     font-weight: bold;
     border-radius: 5px;
+}
+.global-container {
+  height: 100vh; /* penuh layar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto; /* kalau form besar, halaman bisa discroll */
 }

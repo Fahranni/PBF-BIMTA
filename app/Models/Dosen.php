@@ -27,4 +27,10 @@ public function dosen()
     {
         return $this->belongsTo(TugasAkhir::class, 'id_ta', 'id_ta');
     }
+
+public function bimbingan()
+{
+    return $this->hasMany(Bimbingan::class, 'nidn', 'nidn');
+}
+
 }

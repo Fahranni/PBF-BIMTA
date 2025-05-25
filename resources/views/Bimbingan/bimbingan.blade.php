@@ -9,6 +9,11 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+/>
+
   </head>
   @include('sidebar')
     
@@ -28,9 +33,9 @@
         <div class="my-3 p-3 bg-body rounded shadow-sm">
                 
                 
-                {{-- <div class="pb-3">
+                <div class="pb-3">
                   <a href="{{ route('bimbingan.create') }}" class="btn btn-primary">Tambah Data</a>
-                </div> --}}
+                </div> 
             
                 <table class="table table-responsive">
                     <thead class="table-light">
@@ -54,8 +59,8 @@
                       <td>{{$bimbingans['catatan_bimbingan']}}</td>
                       <td>{{$bimbingans['status']}}</td>
                       
-                      {{-- <td>
-                        <form action="{{ route('bimbingan.destroy', $tugas_akhirs['id_jadwal']) }}" method="POST" style="display:inline;">
+                      <td>
+                        <form action="{{ route('bimbingan.destroy', $bimbingans['id_jadwal']) }}" method="POST" style="display:inline;">
                           @csrf
                           @method('DELETE')
 
@@ -65,7 +70,8 @@
 
                           <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')" title="Hapus">
                             <i class="bi bi-trash"></i>
-                          </button> --}}
+                          </button> 
+
                         </form>
                       </td>
                     </tr>

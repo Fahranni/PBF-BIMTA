@@ -16,14 +16,19 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next, $role)
-    {
-    Log::info('RoleMiddleware - session role: ' . session('role'));
-    Log::info('RoleMiddleware - required role: ' . $role);
-        
-        if (session('role') !== $role){
-            return redirect()->route('login')->withErrors(['akses'=>'Tidak memiliki akses']);
-        }
+    public function handle($request, Closure $next, $roles)
+{
+    $rolesArray = array_map('trim', explode(',', $roles));
+    $user = Auth::user();
+
+    if (!$user || !in_array($user->role, $rolesArray)) {
+        return redirect()->route('login')->withErrors(['akses' => 'Tidak memiliki akses']);
+    }
+
     return $next($request);
 }
+
+
+        
+        
 }

@@ -24,5 +24,12 @@ class TugasAkhir extends Model
     {
         return $this->belongsTo(Mahasiswa::class, 'npm', 'npm');
     }
+
+    public function dosen()
+    {
+
+        return $this->belongsTo(Dosen::class, 'nidn', 'nidn');
+
+    }
     
 }

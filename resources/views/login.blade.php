@@ -34,6 +34,11 @@
                 <div class="d-grid gap-2">
                 <button class="btn btn-primary">Login</button>
                 </div>
+
+                <div class="text-center mt-3">
+               Belum punya akun? <a href="{{ route('registrasi') }}">Registrasi</a>
+                </div>
+
                 </form>
                 @if(session('gagal'))
                     <div class="alert alert-danger mt-3 text-center">

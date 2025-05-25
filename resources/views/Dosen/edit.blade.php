@@ -21,7 +21,7 @@
             <div class="mb-3 row">
                     <label for="nidn" class="col-sm-2 col-form-label">NIDN</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name='nidn' id="nidn" value="{{old ('nidn', $dosen['nidn'])}}" readonly>
+                        <input type="text" class="form-control" name='nidn' id="nidn" value="{{old ('nidn', $dosen['nidn'])}}">
                     </div>
             </div>
                 <div class="mb-3 row">

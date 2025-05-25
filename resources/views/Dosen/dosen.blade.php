@@ -24,12 +24,14 @@
 
         <!-- START DATA -->
         <div class="my-3 p-3 bg-with rounded shadow-sm">
-                
+                @if($role == 'admin' || $role === 'dosen')
                 <!-- TOMBOL TAMBAH DATA -->
                 <div class="pb-3 d-flex justify-content-between align-items-center">
                     <a href="{{ route('dosen.create') }}" class="btn btn-primary">Tambah Data</a>
                 </div>
-          
+                @endif
+                <h3 class="text-center fw-bold mb-4">Daftar Dosen Pembimbing Terkini</h3>
+
                 <table class="table table-responsive">
                   <table class="table table-striped align-middle text-center text-nowrap">
                     <thead class="table-light">
@@ -53,18 +55,22 @@
                             <td>{{ $dosens['nama'] }}</td>
                             <td>{{ $dosens['email'] }}</td>
                             <td>{{ $dosens['no_telp'] }}</td>
+
+                            @if($role === 'admin' || $role === 'dosen')
                             <td>
                               <form action="{{ route('dosen.destroy', $dosens['nidn']) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('dosen.edit', $dosens['nidn']) }}" class="btn btn-warning btn-sm me-1" title="edit">Edit
+                                <a href="{{ route('dosen.edit', $dosens['nidn']) }}" class="btn btn-info btn-sm me-1" title="Edit">
                                   <i class="bi bi-pencil-square"></i>
                                 </a>
+                                
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')" title="Hapus">
-                                  <i class="bi bi-trash"></i>
+                                  <i class="bi bi-trash me-1"></i>
                                 </button>
                               </form>
                             </td>
+                            @endif
                           </tr>
                         @endforeach
                       @else

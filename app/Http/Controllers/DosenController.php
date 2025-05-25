@@ -7,20 +7,22 @@ use App\Models\Dosen;
 
 class DosenController extends Controller
 {
-    public function dosen(){//Menampilkan Data Dosen
-        
-        $response = Http::get('http://localhost:8080/Dosen');
-        $dosen = $response->json();
-        //dd($dosen);
-        return view('Dosen.dosen', compact('dosen'));
-    }
-
     private function checkRole(){
         $role = session('role');
         if($role !== 'admin' && $role !=='dosen'){
             abort(403, 'Unauthorized action');
         }
     }
+   
+    public function dosen(){//Menampilkan Data Dosen
+        $role = session('role');
+        $response = Http::get('http://localhost:8080/Dosen');
+        $dosen = $response-> ok() ? $response->json() : [];
+        //dd($dosen);
+        return view('Dosen.dosen', compact('dosen', 'role'));
+    }
+
+    
 
     public function create(){//Menambah Data Dosen
         $this->checkRole();

@@ -43,35 +43,48 @@ class TugasAkhirController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $status = $request->input('status');
+
+        $rules=[
             'judul' => 'required|string',
             'ta' => 'required|file|mimes:pdf,doc,docx',
-            'status' => 'required|string',
+            'status' => 'required|in:0,1',
             'npm' => 'required|string',
-            'revisi' => 'nullable|file|mimes:pdf,doc,docx',
-            'tgl' => 'nullable|date',
-        ]);
+    
+        ];
 
+        if($status == '0'){
+                $rules['revisi'] ='required|file|mimes:pdf,doc,docx';
+                $rules['tgl'] = 'required|date';
+
+        }
+        $validated = $request->validate($rules);
         // Simpan file ke storage/public
         $taPath = $request->file('ta')->store('tugas_akhir', 'public');
+
         $revisiPath = $request->hasFile('revisi') ? $request->file('revisi')->store('revisi_ta', 'public') : null;
+        $tglRevisi = $request->input('tgl') ? date('Y-m-d', strtotime($request->input('tgl'))) : null;
+
+        $data = [
+            'judul' => $request->input('judul'),
+            'file_ta' => $taPath,
+            'status' => $status,
+            'npm' => $request->input('npm'),
+            'file_revisi' => $revisiPath,
+            'tanggal_revisi' => $tglRevisi,
+        ];
 
         // Kirim data ke API eksternal
-        $response = Http::post('http://localhost:8080/TugasAkhir', [
-            'judul' => $request->judul,
-            'file_ta' => $taPath,
-            'status' => $request->status,
-            'npm' => $request->npm,
-            'file_revisi' => $revisiPath,
-            'tanggal_revisi' => $request->tgl,
-        ]);
+        $response = Http::post('http://localhost:8080/TugasAkhir', $data);
+    
 
         if ($response->successful()) {
             return redirect()->route('tugas_akhir.tugas_akhir')->with('success', 'Data berhasil disimpan');
         } else {
-            return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Gagal menyimpan data');
+            $errorBody = $response->body();
+            return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Gagal menyimpan data: ' . $errorBody);
         }
-    }
+}
 
     /**
      * Show the form for editing the specified resource.
