@@ -31,6 +31,12 @@ Project ini menggunakan **Laravel** sebagai framework utama dengan integrasi fro
 2. install backend pada https://github.com/AnayAilirpa/PBF_BackendSBTA.git 
 3. Install dependencies Laravel (composer install)
 4. Konvigurasi .env sesuai kebutuhan
-5. Jalankan server Laravel (php artisan serve)
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bimbingan
+DB_USERNAME=root
+DB_PASSWORD=
+6. Jalankan server Laravel (php artisan serve)
 
 
