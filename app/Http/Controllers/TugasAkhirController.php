@@ -3,148 +3,102 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\Models\TugasAkhir;
+use App\Models\Mahasiswa;
 
 class TugasAkhirController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function tugas_akhir()
     {
-        // Ambil data dari API eksternal
         $response = Http::get('http://localhost:8080/TugasAkhir');
         $tugas_akhir = $response->json();
 
-        // Ambil data mahasiswa lokal berdasarkan npm
-        $mahasiswa = \App\Models\Mahasiswa::all()->keyBy('npm');
+        $mahasiswa = Mahasiswa::all()->keyBy('npm');
 
         foreach ($tugas_akhir as &$item) {
-            $npm = $item['npm'];
-            $item['nama'] = $mahasiswa[$npm]->nama ?? '-';
+            $item['nama'] = $mahasiswa[$item['npm']]->nama ?? '-';
         }
 
         return view('tugas_akhir.tugas_akhir', compact('tugas_akhir'));
     }
 
-    
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('tugas_akhir.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $status = $request->input('status');
-
-        $rules=[
-            'judul' => 'required|string',
-            'ta' => 'required|file|mimes:pdf,doc,docx',
+        $validated = $request->validate([
+            'judul' => 'required|string|max:255',
+            'npm' => 'required|string|max:15',
             'status' => 'required|in:0,1',
-            'npm' => 'required|string',
-    
-        ];
-
-        if($status == '0'){
-                $rules['revisi'] ='required|file|mimes:pdf,doc,docx';
-                $rules['tgl'] = 'required|date';
-
-        }
-        $validated = $request->validate($rules);
-        // Simpan file ke storage/public
-        $taPath = $request->file('ta')->store('tugas_akhir', 'public');
-
-        $revisiPath = $request->hasFile('revisi') ? $request->file('revisi')->store('revisi_ta', 'public') : null;
-        $tglRevisi = $request->input('tgl') ? date('Y-m-d', strtotime($request->input('tgl'))) : null;
-
-        $data = [
-            'judul' => $request->input('judul'),
-            'file_ta' => $taPath,
-            'status' => $status,
-            'npm' => $request->input('npm'),
-            'file_revisi' => $revisiPath,
-            'tanggal_revisi' => $tglRevisi,
-        ];
-
-        // Kirim data ke API eksternal
-        $response = Http::post('http://localhost:8080/TugasAkhir', $data);
-    
-
-        if ($response->successful()) {
-            return redirect()->route('tugas_akhir.tugas_akhir')->with('success', 'Data berhasil disimpan');
-        } else {
-            $errorBody = $response->body();
-            return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Gagal menyimpan data: ' . $errorBody);
-        }
-}
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TugasAkhir $tugasAkhir)
-    {
-        return view('tugas_akhir.edit', compact('tugasAkhir'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id_ta)
-    {
-        $request->validate([
-            'judul' => 'required|string',
-            'ta' => 'nullable|file|mimes:pdf,doc,docx',
-            'status' => 'required|string',
-            'npm' => 'required|string',
-            'revisi' => 'nullable|file|mimes:pdf,doc,docx',
             'tgl' => 'nullable|date',
         ]);
 
-        $taPath = $request->hasFile('ta') ? $request->file('ta')->store('tugas_akhir', 'public') : null;
-        $revisiPath = $request->hasFile('revisi') ? $request->file('revisi')->store('revisi_ta', 'public') : null;
-
-        $payload = [
-            'judul' => $request->judul,
-            'status' => $request->status,
-            'npm' => $request->npm,
-            'tanggal_revisi' => $request->tgl,
+        $data = [
+            'judul' => $validated['judul'],
+            'npm' => $validated['npm'],
+            'status' => $validated['status'],
+            'tanggal_revisi' => $validated['tgl'] ?? now()->toDateString(),
         ];
 
-        if ($taPath) {
-            $payload['file_ta'] = $taPath;
-        }
-
-        if ($revisiPath) {
-            $payload['file_revisi'] = $revisiPath;
-        }
-
-        $response = Http::put("http://localhost:8080/TugasAkhir/{$id_ta}", $payload);
+        $response = Http::withOptions(['verify' => false])
+            ->post('http://localhost:8080/TugasAkhir', $data);
 
         if ($response->successful()) {
-            return redirect()->route('tugas_akhir.tugas_akhir')->with('success', 'Data berhasil diupdate');
-        } else {
-            return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Gagal mengupdate data');
+            return redirect()->route('tugas_akhir.tugas_akhir')->with('success', 'Data berhasil ditambahkan.');
         }
+
+        return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Gagal menambah data: ' . $response->body());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function edit($id_ta)
+    {
+        $response = Http::get("http://localhost:8080/TugasAkhir/{$id_ta}");
+        $tugasAkhir = $response->json();
+
+        if (!$tugasAkhir || isset($tugasAkhir['message'])) {
+            return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Data tidak ditemukan.');
+        }
+
+        return view('tugas_akhir.edit', compact('tugasAkhir'));
+    }
+
+    public function update(Request $request, $id_ta)
+    {
+        $validated = $request->validate([
+            'judul' => 'required|string|max:255',
+            'npm' => 'required|string|max:15',
+            'status' => 'required|in:0,1',
+            'tgl' => 'nullable|date',
+        ]);
+
+        $data = [
+            'judul' => $validated['judul'],
+            'npm' => $validated['npm'],
+            'status' => $validated['status'],
+            'tanggal_revisi' => $validated['tgl'] ?? now()->toDateString(),
+        ];
+
+        $response = Http::withOptions(['verify' => false])
+            ->put("http://localhost:8080/TugasAkhir/{$id_ta}", $data);
+
+        if ($response->successful()) {
+            return redirect()->route('tugas_akhir.tugas_akhir')->with('success', 'Data berhasil diperbarui.');
+        }
+
+        return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Gagal memperbarui data: ' . $response->body());
+    }
+
     public function destroy($id_ta)
     {
-        $tugas_akhir = TugasAkhir::where('id_ta', $id_ta)->first();
-        if ($tugas_akhir) {
-            $tugas_akhir->delete();
-            return redirect()->route('tugas_akhir.tugas_akhir')->with('success', 'Data berhasil dihapus');
+        $response = Http::delete("http://localhost:8080/TugasAkhir/{$id_ta}");
+
+        if ($response->successful()) {
+            return redirect()->route('tugas_akhir.tugas_akhir')->with('success', 'Data berhasil dihapus.');
         }
-        return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Data tidak ditemukan');
+
+        return redirect()->route('tugas_akhir.tugas_akhir')->with('error', 'Gagal menghapus data.');
     }
 }

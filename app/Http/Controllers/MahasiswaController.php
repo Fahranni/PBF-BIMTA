@@ -7,19 +7,29 @@ use App\Models\Mahasiswa;
 
 class MahasiswaController extends Controller
 {
+
+     private function checkRole(){
+        $role = session('role');
+        if($role !== 'admin' && $role !=='mahasiswa'){
+            abort(403, 'Unauthorized action');
+        }
+    }
+
    public function mahasiswa(){//Menampilkan Data Mahasiswa
-        
+    $role = session('role');
       $response = Http :: get('http://localhost:8080/Mahasiswa');
       $mahasiswa = $response->json();
-      return view('Mahasiswa.mahasiswa', compact('mahasiswa'));
+      return view('Mahasiswa.mahasiswa', compact('mahasiswa', 'role'));
   }
 
    public function create(){//Tambah data mahasiswa
+     $this->checkRole();
       $mahasiswa = Mahasiswa::all();
       return view('Mahasiswa.create', ['mahasiswa' => $mahasiswa]);
   }
 
   public function store(Request $request){
+     $this->checkRole();
    $response = Http :: post('http://localhost:8080/Mahasiswa', [
       'npm'=> $request->npm,
       'nama'=> $request->nama,
@@ -38,7 +48,7 @@ class MahasiswaController extends Controller
 
   public function destroy($npm)
   {
-  
+     $this->checkRole();
       $mahasiswa = Mahasiswa::where('npm', $npm)->first();
       if ($mahasiswa) {
           $mahasiswa->delete();
@@ -49,6 +59,7 @@ class MahasiswaController extends Controller
 
 public function edit($npm)
     {
+         $this->checkRole();
         $response = Http::get("http://localhost:8080/Mahasiswa/{$npm}");
         $mahasiswa = $response->json();
         $mahasiswa = is_array($mahasiswa) && isset($mahasiswa[0]) ? $mahasiswa[0] : $mahasiswa;
@@ -56,6 +67,7 @@ public function edit($npm)
     }
 
 public function update(Request $request, $npm) {
+     $this->checkRole();
     $response = Http::put("http://localhost:8080/Mahasiswa/{$npm}", [
         'npm' => $request->npm,
         'nama' => $request->nama,

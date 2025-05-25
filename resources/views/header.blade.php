@@ -5,8 +5,18 @@
       <span class="fs-4 ms-2 fw-bold fst-italic">Bimbingan TA</span>
     </a>
     <ul class="nav nav-pills mb-0">
-      <li class="nav-item"><a href="/home" class="nav-link active">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+      <li class="nav-item">
+        <a href="/home" class="nav-link active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link"
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          Logout
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+      </li>
     </ul>
   </div>
 </header>

@@ -16,8 +16,6 @@ class TugasAkhir extends Model
      'file_ta',
      'status',
      'npm',
-     'file_revisi',
-     'tanggal_revisi'
     ];
 
     public function mahasiswa()

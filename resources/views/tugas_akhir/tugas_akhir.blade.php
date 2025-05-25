@@ -31,16 +31,14 @@
                 <div class="pb-3">
                   <a href="{{ route('tugas_akhir.create') }}" class="btn btn-primary">Tambah Data</a>
                 </div>
-          
+          <h3 class="text-center fw-bold mb-4">Tugas Akhir</h3>
                 <table class="table table-responsive">
                     <thead class="table-light">
                         <tr>
                         <th>No</th>
                         <th>Judul</th>
-                        <th>Tugas Akhir</th>
                         <th>Status</th>
                         <th>Nama Mahasiswa</th>
-                        <th>Revisi</th>
                         <th>Tanggal Revisi</th>
                         <th>Aksi</th>
                         </tr>
@@ -50,24 +48,9 @@
                       <tr>
                       <td>{{$loop->iteration}}</td>
                       <td>{{$tugas_akhirs['judul']}}</td>
-                      <td>
-                        @if($tugas_akhirs['file_ta'])
-                        <a href="{{asset('storage/tugas_akhir/' .$tugas_akhirs['file_ta'])}}" target="_blank">Lihat File</a>
-                        @else
-                        <span class="text-muted"> Tidak ada file</span>
-                        @endif
-
-                      </td>
                       <td>{{$tugas_akhirs['status']}}</td>
                       <td>{{$tugas_akhirs['nama']}}</td>
-                      <td>
-                        @if($tugas_akhirs['file_revisi'])
-                        <a href="{{asset('storage/revisi_ta/' .$tugas_akhirs['file_revisi'])}}" target="_blank">Lihat File</a>
-                        @else
-                        <span class="text-muted">Tidak ada file</span>
-                        @endif
-
-                      </td>
+                      
                       <td>{{$tugas_akhirs['tanggal_revisi']}}</td>
                       
                       <td>

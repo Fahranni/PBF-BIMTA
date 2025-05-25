@@ -23,10 +23,12 @@
 
         <!-- START DATA -->
         <div class="my-3 p-3 bg-body rounded shadow-sm">
+          @if($role === 'admin' || $role === 'mahasiswa')
                 <div class="pb-3">
                   <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary">Tambah Data</a>
                 </div>
-          
+            @endif
+            <h3 class="text-center fw-bold mb-4">Daftar Mahasiswa</h3>
                 <table class="table table-striped align-middle text-center text-nowrap">
                     <thead class="table-light">
                         <tr>
@@ -36,7 +38,9 @@
                         <th>Angkatan</th>
                         <th>Email</th>
                         <th>No.Telepon</th>
+                        @if($role === 'admin' || $role === 'mahasiswa')
                         <th>Aksi</th>
+                         @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -48,6 +52,8 @@
                       <td>{{$mahasiswas['angkatan']}}</td>
                       <td>{{$mahasiswas['email']}}</td>
                       <td>{{$mahasiswas['no_telp']}}</td>
+
+                      @if($role === 'admin' || $role === 'mahasiswa')
                       <td>
                         <form action="{{ route('mahasiswa.destroy', $mahasiswas['npm']) }}" method="POST" style="display:inline;">
                           @csrf
@@ -60,6 +66,7 @@
                           </button>
                         </form>
                       </td>
+                        @endif
                     </tr>
                     @endforeach
                     </tbody>

@@ -57,6 +57,13 @@
   </li>
 
   <li>
+    <a href="{{route('v_tugasakhir.v_tugasakhir')}}" class="nav-link link-body-emphasis">
+    <img src="image/folder.png" alt="Icon" width="19" height="19" class="pe-none me-2">
+      View
+    </a>
+  </li>
+
+  <li>
   <form action="{{ route('logout') }}" method="POST">
     @csrf
     <button type="submit" class="btn nav-link link-body-emphasis w-100 text-start">

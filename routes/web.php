@@ -9,6 +9,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\TugasAkhirController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\VTugasAkhirController;
 use App\Models\Bimbingan;
 use App\Models\Mahasiswa;
 use App\Models\TugasAkhir;
@@ -73,5 +74,8 @@ Route::post('/bimbingan', [BimbinganController::class, 'store'])->name('bimbinga
 Route::delete('/bimbingan/{id_ta}', [BimbinganController::class, 'destroy'])->name('bimbingan.destroy');
 Route::get('/bimbingan/{id_jadwal}/edit', [BimbinganController::class, 'edit'])->name('bimbingan.edit');
 Route::put('/bimbingan/{id_jadwal}', [BimbinganController::class, 'update'])->name('bimbingan.update'); 
+
+Route::get('/v_tugasakhir', [VTugasAkhirController::class, 'v_tugasakhir'])->name('v_tugasakhir.v_tugasakhir');
+
 
 ?>
