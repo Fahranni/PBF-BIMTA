@@ -8,8 +8,16 @@ use App\Models\Mahasiswa;
 
 class TugasAkhirController extends Controller
 {
+      private function checkRole(){
+        $role = session('role');
+        if($role !== 'admin' && $role !=='mahasiswa'){
+            abort(403, 'Unauthorized action');
+        }
+    }
+
     public function tugas_akhir()
     {
+        $role = session('role');
         $response = Http::get('http://localhost:8080/TugasAkhir');
         $tugas_akhir = $response->json();
 
@@ -19,16 +27,18 @@ class TugasAkhirController extends Controller
             $item['nama'] = $mahasiswa[$item['npm']]->nama ?? '-';
         }
 
-        return view('tugas_akhir.tugas_akhir', compact('tugas_akhir'));
+        return view('tugas_akhir.tugas_akhir', compact('tugas_akhir', 'role'));
     }
 
     public function create()
     {
+        $role = session('role');
         return view('tugas_akhir.create');
     }
 
     public function store(Request $request)
     {
+        $role = session('role');
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'npm' => 'required|string|max:15',
@@ -55,6 +65,7 @@ class TugasAkhirController extends Controller
 
     public function edit($id_ta)
     {
+        $role = session('role');
         $response = Http::get("http://localhost:8080/TugasAkhir/{$id_ta}");
         $tugasAkhir = $response->json();
 
@@ -67,6 +78,7 @@ class TugasAkhirController extends Controller
 
     public function update(Request $request, $id_ta)
     {
+        $role = session('role');
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'npm' => 'required|string|max:15',
@@ -93,6 +105,7 @@ class TugasAkhirController extends Controller
 
     public function destroy($id_ta)
     {
+        $role = session('role');
         $response = Http::delete("http://localhost:8080/TugasAkhir/{$id_ta}");
 
         if ($response->successful()) {

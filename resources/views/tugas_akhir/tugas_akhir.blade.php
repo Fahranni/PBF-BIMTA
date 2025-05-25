@@ -27,10 +27,11 @@
         <!-- START DATA -->
         <div class="my-3 p-3 bg-body rounded shadow-sm">
                 
-
+@if($role === 'admin' || $role === 'mahasiswa')
                 <div class="pb-3">
                   <a href="{{ route('tugas_akhir.create') }}" class="btn btn-primary">Tambah Data</a>
                 </div>
+@endif
           <h3 class="text-center fw-bold mb-4">Tugas Akhir</h3>
                 <table class="table table-responsive">
                     <thead class="table-light">
@@ -40,7 +41,9 @@
                         <th>Status</th>
                         <th>Nama Mahasiswa</th>
                         <th>Tanggal Revisi</th>
+                        @if($role === 'admin' || $role === 'mahasiswa')
                         <th>Aksi</th>
+                        @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +55,7 @@
                       <td>{{$tugas_akhirs['nama']}}</td>
                       
                       <td>{{$tugas_akhirs['tanggal_revisi']}}</td>
-                      
+                      @if($role === 'admin' || $role === 'mahasiswa')
                       <td>
                         <form action="{{ route('tugas_akhir.destroy', $tugas_akhirs['id_ta']) }}" method="POST" style="display:inline;">
                           @csrf
@@ -67,6 +70,7 @@
                           </button>
                         </form>
                       </td>
+                      @endif
                     </tr>
                     @endforeach
                     </tbody>
