@@ -42,7 +42,7 @@
 
                         <!-- Tanggal Revisi -->
                         <div class="mb-3 row">
-                            <label for="tgl" class="col-sm-2 col-form-label">Tanggal Revisi</label>
+                            <label for="tgl" class="col-sm-2 col-form-label">Tanggal</label>
                             <div class="col-sm-10">
                                 <input type="date" class="form-control @error('tgl') is-invalid @enderror" name="tgl" id="tgl" value="{{ old('tgl') }}">
                                 @error('tgl')

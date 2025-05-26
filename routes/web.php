@@ -60,6 +60,8 @@ Route::delete('/dosen/{nidn}', [DosenController::class, 'destroy'])->name('dosen
 Route::get('/dosen/{nidn}/edit', [DosenController::class, 'edit'])->name('dosen.edit');
 Route::put('/dosen/{nidn}', [DosenController::class, 'update'])->name('dosen.update'); 
 
+
+Route::get('/', [MahasiswaController::class, 'mahasiswa']);
 Route::get('/mahasiswa', [MahasiswaController::class,'mahasiswa'])->name('mahasiswa.mahasiswa'); // Route untuk mahasiswa
 Route::get('/mahasiswa/create', [MahasiswaController::class, 'create'])->name('mahasiswa.create');
 Route::post('/mahasiswa', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
@@ -73,7 +75,10 @@ Route::get('/bimbingan/create', [BimbinganController::class, 'create'])->name('b
 Route::post('/bimbingan', [BimbinganController::class, 'store'])->name('bimbingan.store');
 Route::delete('/bimbingan/{id_ta}', [BimbinganController::class, 'destroy'])->name('bimbingan.destroy');
 Route::get('/bimbingan/{id_jadwal}/edit', [BimbinganController::class, 'edit'])->name('bimbingan.edit');
-Route::put('/bimbingan/{id_jadwal}', [BimbinganController::class, 'update'])->name('bimbingan.update'); 
+Route::put('/bimbingan/{id_jadwal}', [BimbinganController::class, 'update'])->name('bimbingan.update');
+Route::get('/bimbingan/{id}/download', [BimbinganController::class, 'downloadPdf'])->name('bimbingan.download');
+
+
 
 Route::get('/v_tugasakhir', [VTugasAkhirController::class, 'v_tugasakhir'])->name('v_tugasakhir.v_tugasakhir');
 

@@ -17,13 +17,26 @@ class MahasiswaController extends Controller
 
    public function mahasiswa(){//Menampilkan Data Mahasiswa
     $role = session('role');
+    $npm = session('npm');
+
       $response = Http :: get('http://localhost:8080/Mahasiswa');
       $mahasiswa = $response->json();
       return view('Mahasiswa.mahasiswa', compact('mahasiswa', 'role'));
+
+      if ($role === 'mahasiswa') {
+            $mahasiswa = array_filter($mahasiswa, function ($mhs) use ($npm) {
+                return isset($mhs['npm']) && $mhs['npm'] === $npm;
+            });
+            $mahasiswa = array_values($mahasiswa); 
+        }
+
+    return view('Mahasiswa.mahasiswa', compact('mahasiswa', 'role'));
   }
 
    public function create(){//Tambah data mahasiswa
      $this->checkRole();
+     $role = session('role');
+     
       $mahasiswa = Mahasiswa::all();
       return view('Mahasiswa.create', ['mahasiswa' => $mahasiswa]);
   }

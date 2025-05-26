@@ -29,8 +29,8 @@
             <div class="mb-3 row">
               <label for="nidn" class="col-sm-2 col-form-label">Nama Dosen</label>
               <div class="col-sm-10">
-                <select name="nidn" id="nidn" class="form-select" required>
-                  <option value="">Pilih Dosen</option>
+                <select name="nidn" id="nidn" class="form-select" disabled>
+                  <option value="">Nama Dosen</option>
                   @foreach ($dosen as $d)
                     <option value="{{ $d->nidn }}" {{ $d->nidn == $bimbingan['nidn'] ? 'selected' : '' }}>
                       {{ $d->nama }}
@@ -43,15 +43,15 @@
             <div class="mb-3 row">
               <label for="tanggal_bimbingan" class="col-sm-2 col-form-label">Tanggal Bimbingan</label>
               <div class="col-sm-10">
-                <input type="date" name="tanggal_bimbingan" id="tanggal_bimbingan" class="form-control"
-                       value="{{ old('tanggal_bimbingan', $bimbingan['tanggal_bimbingan']) }}" />
+                <input type="datetime-local" name="tanggal_bimbingan" id="tanggal_bimbingan" class="form-control"
+                       value="{{ old('tanggal_bimbingan', $bimbingan['tanggal_bimbingan']) }}" disabled />
               </div>
             </div>
 
             <div class="mb-3 row">
               <label for="catatan_bimbingan" class="col-sm-2 col-form-label">Catatan Bimbingan</label>
               <div class="col-sm-10">
-                <textarea name="catatan_bimbingan" id="catatan_bimbingan" class="form-control" rows="4">{{ old('catatan_bimbingan', $bimbingan['catatan_bimbingan']) }}</textarea>
+                <textarea name="catatan_bimbingan" id="catatan_bimbingan" class="form-control" disabled rows="4">{{ old('catatan_bimbingan', $bimbingan['catatan_bimbingan']) }}</textarea>
               </div>
             </div>
 
@@ -61,7 +61,7 @@
                 <select name="status" id="status" class="form-select" required>
                   <option value="">Pilih Status</option>
                   <option value="0" {{ $bimbingan['status'] == '0' ? 'selected' : '' }}>Diajukan</option>
-                  <option value="1" {{ $bimbingan['status'] == '1' ? 'selected' : '' }}>Revisi</option>
+                  <option value="1" {{ $bimbingan['status'] == '1' ? 'selected' : '' }}>Disetujui</option>
                 </select>
               </div>
             </div>
