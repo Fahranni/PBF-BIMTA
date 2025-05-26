@@ -21,7 +21,7 @@ Project ini menggunakan **Laravel** sebagai framework utama dengan integrasi fro
 - Menampilkan data dosen dengan Nama Lengkap, NIDN, Email dan No Telepon
 - Apabila login sebagai admin dan dosen dapat mengelola data dosen seperti menambah, mengedit, dan menghapus data dosen pembimbing
 - Login sebagai mahasiswa hanya dapat melihat data dosen
-- 
+  
 ### Jadwal Bimbingan
 - Menampilkan jadwal bimbingan antara mahasiswa dan dosen.
 - Fitur tambah, edit, hapus jadwal bimbingan.
