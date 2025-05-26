@@ -57,7 +57,7 @@
                       <td>{{$bimbingans['nama_dosen']}}</td>
                       <td>{{$bimbingans['tanggal_bimbingan']}}</td>
                       <td>{{$bimbingans['catatan_bimbingan']}}</td>
-                      <td>{{$bimbingans['status']}}</td>
+                      <td>{{$bimbingans['status'] == 1 ?'Diajukan' : 'Revisi'}}</td>
                       
                       <td>
                         <form action="{{ route('bimbingan.destroy', $bimbingans['id_jadwal']) }}" method="POST" style="display:inline;">
@@ -72,7 +72,8 @@
                             <i class="bi bi-trash"></i>
                           </button> 
 
-                          
+                        
+
                         </form>
                       </td>
                     </tr>

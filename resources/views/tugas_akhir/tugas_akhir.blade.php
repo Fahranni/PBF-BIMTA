@@ -51,7 +51,7 @@
                       <tr>
                       <td>{{$loop->iteration}}</td>
                       <td>{{$tugas_akhirs['judul']}}</td>
-                      <td>{{$tugas_akhirs['status']}}</td>
+                      <td>{{$tugas_akhirs['status']== 1 ?'Diajukan' : 'Revisi'}}</td>
                       <td>{{$tugas_akhirs['nama']}}</td>
                       
                       <td>{{$tugas_akhirs['tanggal_revisi']}}</td>

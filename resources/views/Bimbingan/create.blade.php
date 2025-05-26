@@ -39,7 +39,7 @@
             <div class="mb-3 row">
               <label for="tanggal_bimbingan" class="col-sm-2 col-form-label">Tanggal Bimbingan</label>
               <div class="col-sm-10">
-                <input type="date" name="tanggal_bimbingan" id="tanggal_bimbingan" class="form-control" />
+                <input type="datetime-local" name="tanggal_bimbingan" id="tanggal_bimbingan" class="form-control" />
               </div>
             </div>
 
