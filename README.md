@@ -26,11 +26,36 @@ Project ini menggunakan **Laravel** sebagai framework utama dengan integrasi fro
 - Menampilkan jadwal bimbingan antara mahasiswa dan dosen.
 - Fitur tambah, edit, hapus jadwal bimbingan.
 
+## 📁 Struktur Direktori
+<pre> PBF-frontend-main/
+├── app/
+│   └── Http/
+│       └── Controllers/
+├── public/
+├── resources/
+│   ├── views/
+│   ├── css/
+│   └── js/
+├── routes/
+│   └── web.php
+├── .env
+├── composer.json
+└── ...</pre>
+
 ## Cara Install dan Jalankan
 1. Clone repository frontend ini
-2. install backend pada https://github.com/AnayAilirpa/PBF_BackendSBTA.git 
-3. Install dependencies Laravel (composer install)
-4. Konvigurasi .env sesuai kebutuhan
-6. Jalankan server Laravel (php artisan serve)
+   <pre>git clone https://github.com/Fahranni/PBF-BIMTA.git </pre>
+   
+3. install backend pada https://github.com/AnayAilirpa/PBF_BackendSBTA.git
+
+4. Masuk ke Folder
+   
+6. Install dependencies Laravel di terminal
+   <pre>composer install</pre>
+   
+7. Konvigurasi .env sesuai kebutuhan
+   
+9. Jalankan server Laravel
+    <pre>php artisan serve</pre>
 
 
