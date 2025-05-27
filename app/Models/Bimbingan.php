@@ -11,26 +11,26 @@ class Bimbingan extends Model
 
     protected $table = 'jadwal_bimbingan'; 
 
-    protected $primaryKey = 'id_jadwal'; // primary key jika bukan 'id'
+    protected $primaryKey = 'id_jadwal'; 
 
-    public $timestamps = false; 
+    public $timestamps = false; // ganti ke true kalau pakai created_at dan updated_at
 
-    public function dosen()
-    {
-        return $this->belongsTo(Dosen::class, 'nidn', 'nidn');
-    }
-    
-    public function mahasiswa()
-    {
-        
-        return $this->belongsTo(Mahasiswa::class, 'npm', 'npm');
-    }
     protected $fillable = [
-        'id_jadwal',
         'id_ta',
         'nidn',
         'tanggal_bimbingan',
         'catatan_bimbingan',
         'status',
     ];
+
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'nidn', 'nidn');
+    }
+
+    public function mahasiswa()
+    {
+        
+        return $this->belongsTo(Mahasiswa::class, 'npm', 'npm');
+    }
 }

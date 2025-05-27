@@ -57,7 +57,6 @@
             @endif
             </div>
         </div>
-            <!-- AKHIR FORM -->
         </main>
 </body>
 </html>

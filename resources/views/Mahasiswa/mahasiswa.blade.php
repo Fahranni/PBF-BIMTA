@@ -15,7 +15,7 @@
     <main class="content">
       <div class="container py-4">
         <div class="row justify-content-center mt-5">
-          <div class="col-lg-10">
+          <div class="col-md-12">
 
             {{-- ALERT SUCCESS --}}
             @if (session('success'))
@@ -37,7 +37,7 @@
               @endif
 
               <div class="table-responsive">
-                <table class="table table-striped table-bordered text-center align-middle">
+                <table class="table table-striped align-middle text-center text-nowrap">
                   <thead class="table-light">
                     <tr>
                       <th>No</th>
@@ -86,8 +86,7 @@
                   </tbody>
                 </table>
               </div>
-
-            </div> {{-- END CARD --}}
+            </div>
           </div>
         </div>
       </div>

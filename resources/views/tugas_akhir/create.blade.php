@@ -18,7 +18,7 @@
 
                     <div class="my-3 p-3 bg-body rounded shadow-sm">
 
-                        <!-- Judul -->
+                        
                         <div class="mb-3 row">
                             <label for="judul" class="col-sm-2 col-form-label">Judul Tugas Akhir</label>
                             <div class="col-sm-10">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <!-- Tanggal Revisi -->
+                       
                         <div class="mb-3 row">
                             <label for="tgl" class="col-sm-2 col-form-label">Tanggal</label>
                             <div class="col-sm-10">

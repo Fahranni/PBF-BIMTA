@@ -23,57 +23,53 @@
 <ul class="nav nav-pills flex-column mb-auto h-full">
   <li class="nav-item">
     <a href="{{ route('home') }}" class="nav-link link-body-emphasis">
-    <img src="image/homee.png" alt="Icon" width="19" height="19" class="pe-none me-2">
+      <img src="image/homee.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Home
     </a>
   </li>
 
-  <li>
-    <a href="{{ route('dosen.dosen') }}" class="nav-link link-body-emphasis">
-    <img src="image/dosen.png" alt="Icon" width="19" height="19" class="pe-none me-2">
-      Dosen Pembimbing
-    </a>
-  </li>
+  {{-- Hanya admin yang bisa melihat Dosen Pembimbing dan Mahasiswa --}}
+  @if(session('role') === 'admin')
+    <li>
+      <a href="{{ route('dosen.dosen') }}" class="nav-link link-body-emphasis">
+        <img src="image/dosen.png" alt="Icon" width="19" height="19" class="pe-none me-2">
+        Dosen Pembimbing
+      </a>
+    </li>
+
+    <li>
+      <a href="{{ route('mahasiswa.mahasiswa') }}" class="nav-link link-body-emphasis">
+        <img src="image/student.png" alt="Icon" width="19" height="19" class="pe-none me-2">
+        Mahasiswa
+      </a>
+    </li>
+  @endif
 
   <li>
-    <a href="{{route('mahasiswa.mahasiswa')}}" class="nav-link link-body-emphasis">
-    <img src="image/student.png" alt="Icon" width="19" height="19" class="pe-none me-2">
-      Mahasiswa
-    </a>
-  </li>
- 
-
-  <li>
-    <a href="{{route('tugas_akhir.tugas_akhir')}}" class="nav-link link-body-emphasis">
-    <img src="image/book.png" alt="Icon" width="19" height="19" class="pe-none me-2">
+    <a href="{{ route('tugas_akhir.tugas_akhir') }}" class="nav-link link-body-emphasis">
+      <img src="image/book.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Tugas Akhir
     </a>
   </li>
+
   <li>
-    <a href="{{route('bimbingan.bimbingan')}}" class="nav-link link-body-emphasis">
-    <img src="image/kalender.png" alt="Icon" width="19" height="19" class="pe-none me-2">
+    <a href="{{ route('bimbingan.bimbingan') }}" class="nav-link link-body-emphasis">
+      <img src="image/kalender.png" alt="Icon" width="19" height="19" class="pe-none me-2">
       Jadwal Bimbingan
     </a>
   </li>
 
-  {{--<li>
-    <a href="{{route('v_tugasakhir.v_tugasakhir')}}" class="nav-link link-body-emphasis">
-    <img src="image/folder.png" alt="Icon" width="19" height="19" class="pe-none me-2">
-      View
-    </a>
-  </li>
---}}
   <li>
-  <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn nav-link link-body-emphasis w-100 text-start">
-      <img src="image/logout.png" alt="Logout" width="19" height="19" class="pe-none me-2">
-      Logout
-    </button>
-  </form>
-</li>
-
+    <form action="{{ route('logout') }}" method="POST">
+      @csrf
+      <button type="submit" class="btn nav-link link-body-emphasis w-100 text-start">
+        <img src="image/logout.png" alt="Logout" width="19" height="19" class="pe-none me-2">
+        Logout
+      </button>
+    </form>
+  </li>
 </ul>
+
 </nav>
 </div>
 <div class="b-example-divider b-example-vr"></div>

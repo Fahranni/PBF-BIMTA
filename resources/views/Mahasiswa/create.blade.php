@@ -49,8 +49,6 @@
                  </div>
                     <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button></div>
               </form>
-            </div>
-            <!-- AKHIR FORM -->
-    
+            </div>    
 </body>
 </html>

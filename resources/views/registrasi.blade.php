@@ -78,7 +78,6 @@
             <div class="d-grid gap-1">
               <button class="btn btn-primary">Submit</button>
             </div>
-            
           </form>
         </div>
       </div>

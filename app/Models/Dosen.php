@@ -7,30 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dosen extends Model
 {
-   use HasFactory;
-   protected $table = 'dosen_pembimbing';
-   protected $primaryKey = 'nidn';
-   protected $fillable = [
-    'nidn',
-    'nama',
-    'email',
-    'no_telp',
-];
-public $timestamps = false; 
+    protected $table = 'dosen_pembimbing';
+    protected $primaryKey = 'nidn';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
-public function dosen()
-{
-    return $this->belongsTo(Dosen::class, 'nidn', 'nidn');
-}
-
- public function tugasAkhir()
+    public function user()
     {
-        return $this->belongsTo(TugasAkhir::class, 'id_ta', 'id_ta');
+        return $this->hasOne(User::class, 'nidn', 'nidn');
     }
-
-public function bimbingan()
-{
-    return $this->hasMany(Bimbingan::class, 'nidn', 'nidn');
-}
-
 }

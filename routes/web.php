@@ -77,7 +77,8 @@ Route::delete('/bimbingan/{id_ta}', [BimbinganController::class, 'destroy'])->na
 Route::get('/bimbingan/{id_jadwal}/edit', [BimbinganController::class, 'edit'])->name('bimbingan.edit');
 Route::put('/bimbingan/{id_jadwal}', [BimbinganController::class, 'update'])->name('bimbingan.update');
 Route::get('/bimbingan/{id}/download', [BimbinganController::class, 'downloadPdf'])->name('bimbingan.download');
-
+//Route::get('/bimbingan/detail/{id_ta}', [BimbinganController::class, 'show'])->name('bimbingan.show');
+Route::get('/bimbingan/{mahasiswa}', [BimbinganController::class, 'show'])->name('bimbingan.show');
 
 
 Route::get('/v_tugasakhir', [VTugasAkhirController::class, 'v_tugasakhir'])->name('v_tugasakhir.v_tugasakhir');

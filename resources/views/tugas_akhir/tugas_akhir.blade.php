@@ -81,7 +81,6 @@
                 </table>
               </div>
             </div>
-            {{-- END DATA --}}
           </div>
         </div>
       </div>

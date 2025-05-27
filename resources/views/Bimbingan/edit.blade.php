@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Edit Data Jadwal Bimbingan</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="bg-light vh-100">
 
@@ -44,25 +44,40 @@
               <label for="tanggal_bimbingan" class="col-sm-2 col-form-label">Tanggal Bimbingan</label>
               <div class="col-sm-10">
                 <input type="datetime-local" name="tanggal_bimbingan" id="tanggal_bimbingan" class="form-control"
-                       value="{{ old('tanggal_bimbingan', $bimbingan['tanggal_bimbingan']) }}" disabled />
+                       value="{{ old('tanggal_bimbingan', $bimbingan['tanggal_bimbingan']) }}" readonly />
               </div>
             </div>
 
             <div class="mb-3 row">
               <label for="catatan_bimbingan" class="col-sm-2 col-form-label">Catatan Bimbingan</label>
               <div class="col-sm-10">
-                <textarea name="catatan_bimbingan" id="catatan_bimbingan" class="form-control" disabled rows="4">{{ old('catatan_bimbingan', $bimbingan['catatan_bimbingan']) }}</textarea>
+                <textarea name="catatan_bimbingan" id="catatan_bimbingan" class="form-control" readonly rows="4">{{ old('catatan_bimbingan', $bimbingan['catatan_bimbingan']) }}</textarea>
               </div>
             </div>
 
             <div class="mb-3 row">
               <label for="status" class="col-sm-2 col-form-label">Status</label>
               <div class="col-sm-10">
-                <select name="status" id="status" class="form-select" required>
-                  <option value="">Pilih Status</option>
-                  <option value="0" {{ $bimbingan['status'] == '0' ? 'selected' : '' }}>Diajukan</option>
-                  <option value="1" {{ $bimbingan['status'] == '1' ? 'selected' : '' }}>Disetujui</option>
-                </select>
+                @php
+                  $role = session('role'); 
+                @endphp
+
+                @if ($role === 'mahasiswa')
+                  {{-- Jika mahasiswa, hanya lihat status readonly --}}
+                  <input type="text" class="form-control" value="{{ $bimbingan['status'] == 1 ? 'Disetujui' : 'Diajukan' }}" readonly>
+                  <input type="hidden" name="status" value="{{ $bimbingan['status'] }}">
+                @elseif ($role === 'dosen')
+                  {{-- Jika dosen, bisa pilih status --}}
+                  <select name="status" id="status" class="form-select" required>
+                    <option value="">Pilih Status</option>
+                    <option value="0" {{ $bimbingan['status'] == 0 ? 'selected' : '' }}>Diajukan</option>
+                    <option value="1" {{ $bimbingan['status'] == 1 ? 'selected' : '' }}>Disetujui</option>
+                  </select>
+                @else
+                  {{-- Role lain, tampilkan status readonly --}}
+                  <input type="text" class="form-control" value="{{ $bimbingan['status'] == 1 ? 'Disetujui' : 'Diajukan' }}" readonly>
+                  <input type="hidden" name="status" value="{{ $bimbingan['status'] }}">
+                @endif
               </div>
             </div>
           </div>

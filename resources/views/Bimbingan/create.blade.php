@@ -14,23 +14,24 @@
     <div class="row justify-content-center mt-0">
       <div class="col-md-10 col-lg-10 mt-50">
         @if ($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        @endif
 
         <form action="{{ route('bimbingan.store') }}" method="POST" style="margin-top:100px;">
           @csrf
 
           <div class="my-3 p-3 bg-body rounded shadow-sm">
+
             <div class="mb-3 row">
               <label for="id_ta" class="col-sm-2 col-form-label">ID Tugas Akhir</label>
               <div class="col-sm-10">
-                <input type="text" name="id_ta" id="id_ta" class="form-control" placeholder="Masukkan ID Tugas Akhir" />
+                <input type="text" name="id_ta" id="id_ta" class="form-control" placeholder="Masukkan ID Tugas Akhir" required />
               </div>
             </div>
 
@@ -39,7 +40,7 @@
               <div class="col-sm-10">
                 <select name="nidn" id="nidn" class="form-select" required>
                   <option value="">Pilih Dosen</option>
-                  @foreach ($dosens as $dosen)
+                  @foreach ($dosen_pembimbing as $dosen)
                     <option value="{{ $dosen->nidn }}">{{ $dosen->nama }}</option>
                   @endforeach
                 </select>
@@ -49,27 +50,19 @@
             <div class="mb-3 row">
               <label for="tanggal_bimbingan" class="col-sm-2 col-form-label">Tanggal Bimbingan</label>
               <div class="col-sm-10">
-                <input type="datetime-local" name="tanggal_bimbingan" id="tanggal_bimbingan" class="form-control" />
+                <input type="datetime-local" name="tanggal_bimbingan" id="tanggal_bimbingan" class="form-control" required />
               </div>
             </div>
 
             <div class="mb-3 row">
               <label for="catatan_bimbingan" class="col-sm-2 col-form-label">Catatan Bimbingan</label>
               <div class="col-sm-10">
-                <textarea name="catatan_bimbingan" id="catatan_bimbingan" class="form-control" rows="4" placeholder="Masukkan catatan bimbingan"></textarea>
+                <textarea name="catatan_bimbingan" id="catatan_bimbingan" class="form-control" rows="4" placeholder="Masukkan catatan bimbingan" required></textarea>
               </div>
             </div>
 
-            <div class="mb-3 row">
-              <label for="status" class="col-sm-2 col-form-label">Status</label>
-              <div class="col-sm-10">
-                <select name="status" id="status" class="form-select" required>
-                  <option value="">Pilih Status</option>
-                  <option value="0">Diajukan</option>
-                  <option value="1">Disetujui</option>
-                </select>
-              </div>
-            </div>
+            <!-- Tidak ada input status di form, otomatis set di controller diajukan-->
+
           </div>
 
           <div class="col-sm-10">

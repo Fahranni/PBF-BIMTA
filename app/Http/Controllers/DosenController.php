@@ -13,6 +13,7 @@ class DosenController extends Controller
             abort(403, 'Unauthorized action');
         }
     }
+
    
     public function dosen(){//Menampilkan Data Dosen
         $role = session('role');
@@ -24,41 +25,42 @@ class DosenController extends Controller
 
     
 
-    public function create(){//Menambah Data Dosen
+    public function create(){//Menampilkan form tambah data dosen
         $this->checkRole();
-        $dosen = Dosen::all();
-        return view('Dosen.create', ['dosen' => $dosen]);
+        //$dosen = Dosen::all();
+        return view('Dosen.create');
     }
     
-    public function store(Request $request){
-        $this->checkRole();
+    public function store(Request $request){//Function Menyimpan
+    $this->checkRole();
     $response = Http::post('http://localhost:8080/Dosen',[
         'nidn' => $request->nidn,
         'nama' => $request->nama,
         'email'=> $request->email,
         'no_telp'=> $request->no_telp,
     ]);
-    if ($response->successful()){
-        $data = $response->json();
-        return redirect()->route('dosen.dosen')->with('Berhasil','Data Berhasil disimpan');
+    if (!$response->successful()){
+       
+       // return redirect()->route('dosen.dosen')->with('Berhasil','Data Berhasil disimpan');
+        dd($response->status(), $response->body());
     }else{
         return redirect()->route('dosen.dosen')->with('eror','Gagal Menyimpan');
     }
     }
 
+//Function menghapus data 
+    public function destroy($nidn){
+    $this->checkRole();
+    $response = Http::delete("http://localhost:8080/Dosen/{$nidn}");
 
-    public function destroy($nidn)
-{
-$this->checkRole();
-    $dosen = Dosen::where('nidn', $nidn)->first();
-    if ($dosen) {
-        $dosen->delete();
-        return redirect()->route('dosen.dosen')->with('success', 'Data berhasil dihapus');
-    }
-    return redirect()->route('dosen.dosen')->with('error', 'Data tidak ditemukan');
-}
+    if ($response->successful()) {
+    return redirect()->route('dosen.dosen')->with('success', 'Data berhasil dihapus');
+        }
+     return redirect()->route('dosen.dosen')->with('error', 'Gagal menghapus data');
+        }
 
-public function edit($nidn)
+
+    public function edit($nidn)//Edit Data
     {
         $this->checkRole();
         $response = Http::get("http://localhost:8080/Dosen/{$nidn}");
@@ -67,7 +69,7 @@ public function edit($nidn)
         return view('Dosen.edit', compact('dosen'));
     }
 
-public function update(Request $request, $nidn) {
+    public function update(Request $request, $nidn) {
     $this->checkRole();
     $response = Http::put("http://localhost:8080/Dosen/{$nidn}", [
         'nidn' => $request->nidn,
@@ -83,9 +85,6 @@ public function update(Request $request, $nidn) {
     }
 }
 
-
     }
-
-
 
 ?>
