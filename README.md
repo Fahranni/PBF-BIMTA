@@ -65,4 +65,31 @@ Project ini menggunakan **Laravel** sebagai framework utama dengan integrasi fro
     <pre>php artisan serve</pre>
 
 # Tampilan Sistem
+### Halaman Registrasi
+![Registrasi](image/registrasi.png)
+
+### Halaman Login User
+![Login](image/login.png)
+
+
+### Halaman Dashboard Admin
+![Admin](image/admin.png)
+
+### Halaman Dashboard Mahasiswa
+![Mahasiswa](image/mahasiswa.png)
+
+### Tabel Data Dosen Pembimbing
+![Tabel](image/tabledosen.png)
+
+### Tabel Data Mahasiswa
+![Admin](image/tablemahasiswa.png)
+
+### Halaman Jadwal Bimbingan dan Progess Bimbingan
+![Bimbingan](image/bimbingan1.png)
+
+### Halaman Form Penjadwalan
+![Bimbingan](image/bimbingan2.png)
+
+### Halaman Jadwal Bimbingan
+![Bimbingan](image/bimbingan3.png)
 
