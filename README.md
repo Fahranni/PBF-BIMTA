@@ -75,6 +75,9 @@ Project ini menggunakan **Laravel** sebagai framework utama dengan integrasi fro
 ### Halaman Dashboard Admin
 ![Admin](image/admin.png)
 
+### Halaman Dashboard Admin
+![Admin](image/dosen.png)
+
 ### Halaman Dashboard Mahasiswa
 ![Mahasiswa](image/mahasiswa.png)
 
